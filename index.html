@@ -725,6 +725,7 @@ function responderJSON(objeto) {
                     thumb.classList.add('border-azul-rp', 'scale-105', 'shadow-md');
                     thumb.classList.remove('border-transparent', 'opacity-60');
                     
+                    // Desplazamiento horizontal interno del contenedor (segundo plano silencioso sin saltos de pantalla)
                     const container = officeCarouselThumbs;
                     const scrollTarget = thumb.offsetLeft - (container.clientWidth / 2) + (thumb.clientWidth / 2);
                     container.scrollTo({ left: scrollTarget, behavior: 'smooth' });
@@ -780,7 +781,7 @@ function responderJSON(objeto) {
 
         initOfficeCarousel();
 
-        // Mobile touch gestures / swipes
+        // Soporte de gestos para dispositivos móviles en carrusel
         let touchStartX = 0;
         let touchEndX = 0;
 
@@ -806,6 +807,7 @@ function responderJSON(objeto) {
             }, { passive: true });
         }
 
+        // Navegación con teclado sin mover el scroll del navegador
         document.addEventListener('keydown', e => {
             if (!viewport) return;
             const rect = viewport.getBoundingClientRect();
@@ -919,18 +921,18 @@ function responderJSON(objeto) {
             }, 10);
             switchTab('leads');
             
-            // Restore Google Script URL if already configured locally
+            // Cargar URL guardada si existe en almacenamiento local
             const savedUrl = localStorage.getItem('royalPrestigeScriptUrl');
             if (savedUrl) {
                 document.getElementById('leadScriptUrl').value = savedUrl;
             }
 
-            // Prefill Dates with today's date
+            // Precargar fechas con día de hoy
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('leadFechaDemo').value = today;
             document.getElementById('leadFechaInicio').value = today;
 
-            // Generate referral grid
+            // Iniciar grilla de referidos calificados
             initReferralsGrid();
         }
 
@@ -967,7 +969,7 @@ function responderJSON(objeto) {
             if (tabId === 'stats') titleEl.innerText = "Integrar con Google Apps Script";
         }
 
-        // --- STREAMING_CHUNK: Managing referrals grid and row addition/deletion ---
+        // --- STREAMING_CHUNK: Administrando grilla de referidos y adición/eliminación de filas ---
         let currentReferralRowsCount = 10;
         const maxReferralRows = 19;
 
@@ -977,7 +979,7 @@ function responderJSON(objeto) {
             container.innerHTML = '';
             currentReferralRowsCount = 0;
 
-            // Build initial 10 clean rows
+            // Construir los primeros 10 casilleros limpios recomendados
             for (let i = 1; i <= 10; i++) {
                 addReferralRow();
             }
@@ -1056,7 +1058,7 @@ function responderJSON(objeto) {
                 row.id = `refRow-${currentReferralRowsCount}`;
                 row.children[0].innerText = currentReferralRowsCount;
                 
-                // Update delete button
+                // Actualizar botón de eliminar fila
                 const btn = row.querySelector('button');
                 btn.setAttribute('onclick', `removeReferralRow(${currentReferralRowsCount})`);
             });
@@ -1071,7 +1073,7 @@ function responderJSON(objeto) {
             }
         }
 
-        // --- STREAMING_CHUNK: Performing integration post to Google Apps Script Web App ---
+        // --- STREAMING_CHUNK: Ejecutando el envío sin preflight CORS para evitar errores en GitHub ---
         async function handleLeadSubmit(event) {
             event.preventDefault();
 
@@ -1081,10 +1083,10 @@ function responderJSON(objeto) {
                 return;
             }
 
-            // Save Web App Script Link to local Storage
+            // Guardar enlace en memoria del navegador
             localStorage.setItem('royalPrestigeScriptUrl', scriptUrl);
 
-            // Fetch Header Info
+            // Obtener cabeceras
             const team = document.getElementById('leadTeam').value;
             const representative = document.getElementById('leadRepresentative').value.trim();
             const name = document.getElementById('leadName').value.trim();
@@ -1095,7 +1097,7 @@ function responderJSON(objeto) {
             const rawFechaDemo = document.getElementById('leadFechaDemo').value;
             const rawFechaInicio = document.getElementById('leadFechaInicio').value;
 
-            // Formatter helper for dates dd/mm/yyyy
+            // Convertir fechas a dd/mm/yyyy
             const formatDate = (rawDate) => {
                 if(!rawDate) return "";
                 const parts = rawDate.split('-');
@@ -1106,7 +1108,7 @@ function responderJSON(objeto) {
             const fechaDemoFormatted = formatDate(rawFechaDemo);
             const fechaInicioFormatted = formatDate(rawFechaInicio);
 
-            // Fetch Referrals Matrix Rows
+            // Recopilar contactos calificados de la grilla
             const contacts = [];
             const rows = document.getElementById('referralsTableBody').children;
             let filledCount = 0;
@@ -1139,13 +1141,13 @@ function responderJSON(objeto) {
                 return;
             }
 
-            // Button status update
+            // Deshabilitar botón
             const submitBtn = document.getElementById('submitLeadBtn');
             const originalBtnHtml = submitBtn.innerHTML;
             submitBtn.disabled = true;
             submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch animate-spin text-lg"></i> Procesando y duplicando plantilla en Google Sheet...`;
 
-            // Prepare Payload Object
+            // Construir payload ordenado
             const payload = {
                 team,
                 representante: representative,
@@ -1161,30 +1163,32 @@ function responderJSON(objeto) {
             };
 
             try {
-                // Fetch Request targeting published Google Web App
+                // ATENCION EXCEPCIONAL PARA GITHUB PAGES: 
+                // Usamos text/plain como Content-Type para saltear el preflight de CORS de forma limpia.
+                // Google Apps Script lo procesará y leerá perfectamente como un JSON stringificado sin lanzar error.
                 const response = await fetch(scriptUrl, {
                     method: 'POST',
                     mode: 'no-cors',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'text/plain;charset=utf-8'
                     },
                     body: JSON.stringify(payload)
                 });
 
-                // Under 'no-cors', we can assume delivery if fetch does not drop into catch
+                // En modo 'no-cors' la respuesta llega opaca, asumimos éxito inmediato si el fetch no arrojó excepción.
                 showNotification(`¡Demostración de "${name}" enviada correctamente! Se ha duplicado y cargado en el Sheet del equipo ${team}.`, "success");
                 
-                // Clear Fields except configurations
+                // Resetear campos del formulario principal
                 document.getElementById('leadName').value = '';
                 document.getElementById('leadPhone').value = '';
                 document.getElementById('leadReferidoDe').value = '';
                 document.getElementById('leadRegalo').value = '';
                 
-                // Reinitialize grid
+                // Reiniciar grilla de contactos
                 initReferralsGrid();
 
             } catch (error) {
-                console.error("Error sending lead to Google Sheet API: ", error);
+                console.error("Error al enviar demostración al Google Sheet: ", error);
                 showNotification("Ocurrió un error al procesar el envío. Verificá la URL del script en tu barra superior.", "error");
             } finally {
                 submitBtn.disabled = false;
