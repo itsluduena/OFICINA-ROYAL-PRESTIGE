@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Prestige - Oficina Autorizada Sáenz Peña</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'azul-rp': '#2D60A6',
+                        'azul-oscuro-rp': '#1A3D70',
+                        'gris-claro-rp': '#F8FAFC'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glow-text {
+            color: #2e65b1;
+            animation: glowPulse 2.5s infinite alternate;
+            word-wrap: break-word;
+        }
+
+        @keyframes glowPulse {
+            0% {
+                text-shadow: 
+                    0 0 4px rgba(45, 96, 166, 0.1),
+                    0 0 8px rgba(45, 96, 166, 0.05);
+            }
+            100% {
+                text-shadow: 
+                    0 0 8px rgba(0, 34, 82, 0.23),
+                    0 0 15px rgba(0, 40, 97, 0.17);
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-800 antialiased relative">
+
+    <div class="bg-azul-rp text-white py-2 px-[5%] text-xs md:text-sm font-medium tracking-wide flex justify-between items-center gap-2">
+        <div class="flex-1 text-center" id="topBannerText">
+            ¡Viví la experiencia Royal Prestige® en nuestra oficina oficial de Presidencia Roque Sáenz Peña!
+        </div>
+        <button onclick="openLoginModal()" class="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 transition-all px-3 py-1 rounded-md text-[11px] font-bold uppercase tracking-wider shrink-0 shadow-sm">
+            <i class="fa-solid fa-user-gear"></i> Acceso Admin
+        </button>
+    </div>
+
+    <nav class="sticky top-0 z-40 bg-white/95 backdrop-blur shadow-md py-3 px-[5%] flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="logo">
+            <img src="https://www.royalprestige.com/ResourcePackages/RoyalPrestige/assets/dist/images/Logos/royalprestigelogovector.svg" alt="Royal Prestige" class="h-14 md:h-16 object-contain">
+        </div>
+        <ul class="flex flex-wrap justify-center items-center gap-6 text-xs md:text-sm font-semibold uppercase tracking-wider text-gray-700">
+            <li><a href="#inicio" class="hover:text-azul-rp transition duration-300">Inicio</a></li>
+            <li><a href="#oficina" class="hover:text-azul-rp transition duration-300">Nuestra Oficina</a></li>
+            <li><a href="#galeria-seccion" class="hover:text-azul-rp transition duration-300">Galería de Fotos</a></li>
+            <li><a href="#contacto" class="hover:text-azul-rp transition duration-300">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <header class="text-center my-10 md:my-16 max-w-4xl mx-auto px-6">
+        <h1 class="glow-text text-2xl md:text-4.5xl lg:text-4xl font-extrabold leading-snug">
+            Bienvenido a la página Oficial de la Oficina de Royal Prestige Sáenz Peña
+        </h1>
+        <p class="text-gray-500 mt-4 text-sm md:text-base">Inspirando hábitos alimenticios saludables y un modelo de negocio de excelencia para el Chaco.</p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center mb-16" id="inicio">
+        <div class="relative overflow-hidden rounded-2xl shadow-xl bg-white border border-gray-100 group">
+            <div class="flex transition-transform duration-500 ease-in-out" id="carouselSlides">
+                <div class="min-w-full">
+                    <img src="https://prdcuscmscdn01.azureedge.net/royalprestige/images/royalprestigecolibraries/default-library/1_royal-prestige_15-piece-set_hero-image.jpg?sfvrsn=927e86d_1" alt="Sistemas de Cocina 15 piezas" class="w-full h-auto object-cover" onerror="this.src='https://placehold.co/600x450/2D60A6/FFFFFF?text=Sistemas+de+Cocina'">
+                </div>
+                <div class="min-w-full">
+                    <img src="https://prdcuscmscdn01.azureedge.net/royalprestige/images/royalprestigecolibraries/default-library/1_royal-prestige_7-piece-classic-cooking-system_hero-image.jpg?sfvrsn=de7d3e36_1" alt="Sistema de Cocina Clásico 7 piezas" class="w-full h-auto object-cover" onerror="this.src='https://placehold.co/600x450/2D60A6/FFFFFF?text=Sistema+Clasico'">
+                </div>
+                <div class="min-w-full">
+                    <img src="https://prdcuscmscdn01.azureedge.net/royalprestige/images/royalprestigecolibraries/default-library/1_royal-prestige_10-piece-set_hero-image-(1).jpg?sfvrsn=deeb272_1" alt="Sistemas de Cocina 10 piezas" class="w-full h-auto object-cover" onerror="this.src='https://placehold.co/600x450/2D60A6/FFFFFF?text=Sistemas+10+Piezas'">
+                </div>
+            </div>
+            
+            <button class="absolute top-1/2 -translate-y-1/2 left-4 bg-white/90 hover:bg-azul-rp hover:text-white text-gray-800 w-10 h-10 rounded-full flex items-center justify-center shadow-md transition duration-300 z-10" onclick="moveSlide(-1)">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="absolute top-1/2 -translate-y-1/2 right-4 bg-white/90 hover:bg-azul-rp hover:text-white text-gray-800 w-10 h-10 rounded-full flex items-center justify-center shadow-md transition duration-300 z-10" onclick="moveSlide(1)">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                <span class="dot w-3 h-3 rounded-full bg-azul-rp cursor-pointer transition-all duration-300" onclick="currentProductSlide(0)"></span>
+                <span class="dot w-3 h-3 rounded-full bg-gray-300 cursor-pointer transition-all duration-300" onclick="currentProductSlide(1)"></span>
+                <span class="dot w-3 h-3 rounded-full bg-gray-300 cursor-pointer transition-all duration-300" onclick="currentProductSlide(2)"></span>
+            </div>
+        </div>
+
+        <section class="space-y-6">
+            <div class="inline-block bg-blue-50 text-azul-rp text-xs font-bold tracking-wider uppercase px-3 py-1 rounded-full">
+                Calidad y Salud Premium
+            </div>
+            <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight">Sistemas de Cocina Royal Prestige®</h2>
+            <h4 class="text-lg font-semibold text-azul-rp tracking-wide uppercase">Inversión para toda la vida</h4>
+            <p class="text-gray-700 font-medium text-lg leading-relaxed">
+                Hechos para vos, que buscás la más alta calidad para cocinar de manera inteligente y alimentar mejor a tu familia.
+            </p>
+            <p class="text-gray-600 leading-relaxed">
+                Cociná sin aceite la mayoría de las carnes y aves, con muy poca o nada de agua. Tus comidas se cocinan en sus propios jugos, manteniendo los nutrientes al máximo, texturas ideales y sabores espectaculares gracias a nuestro acero inoxidable de grado quirúrgico.
+            </p>
+            <div class="p-4 bg-blue-50 border-l-4 border-azul-rp rounded-r-xl">
+                <p class="text-azul-oscuro-rp font-bold text-sm md:text-base flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved text-azul-rp"></i>
+                    Calidad superior respaldada con una garantía limitada de 50 años.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <section class="bg-gris-claro-rp py-16 px-6" id="oficina">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
+            
+            <div class="lg:col-span-7 space-y-8 flex flex-col justify-between">
+                <div>
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-2">¿Qué hacemos en nuestra Oficina?</h2>
+                    <p class="text-gray-500">Un espacio de encuentro, aprendizaje, crecimiento personal y éxito comercial en Sáenz Peña.</p>
+                    <div class="w-16 h-1 bg-azul-rp mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition duration-300">
+                        <div class="w-12 h-12 bg-blue-50 text-azul-rp rounded-xl flex items-center justify-center mb-4 text-xl">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2">Capacitaciones Gratuitas</h4>
+                        <p class="text-gray-600 text-sm">Aprendé a maximizar el uso de tus sistemas de cocina y descubrí técnicas avanzadas de cocina saludable sin ningún tipo de costo.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition duration-300">
+                        <div class="w-12 h-12 bg-blue-50 text-azul-rp rounded-xl flex items-center justify-center mb-4 text-xl">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2">Charlas de Negocios</h4>
+                        <p class="text-gray-600 text-sm">Conocé nuestra propuesta comercial y sumate a importantes oportunidades laborales independientes con un plan de carrera increíble.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition duration-300">
+                        <div class="w-12 h-12 bg-blue-50 text-azul-rp rounded-xl flex items-center justify-center mb-4 text-xl">
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2">Demostraciones en Vivo</h4>
+                        <p class="text-gray-600 text-sm">Pactá tu demostración interactiva personalizada para ver los utensilios en acción, degustar recetas ricas y verificar su tecnología única.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition duration-300">
+                        <div class="w-12 h-12 bg-blue-50 text-azul-rp rounded-xl flex items-center justify-center mb-4 text-xl">
+                            <i class="fa-solid fa-medal"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2">Eventos y Reconocimiento</h4>
+                        <p class="text-gray-600 text-sm">Celebramos juntos el logro de cada asesor de ventas. Impulsamos tu desarrollo profesional con incentivos reales y capacitaciones.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 flex flex-col justify-center">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 space-y-6 h-full flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Horarios de Atención</h3>
+                        <p class="text-sm text-gray-400">Vení a conocernos y descubrí nuestros sistemas de salud</p>
+                        <div class="w-12 h-0.5 bg-azul-rp mt-3 rounded-full"></div>
+                    </div>
+                    <div class="divide-y divide-gray-100 text-sm space-y-1">
+                        <div class="flex justify-between py-4">
+                            <span class="font-semibold text-gray-700">Lunes a Sábados</span>
+                            <span id="officeStatusBadge" class="text-green-600 font-bold bg-green-50 px-3 py-1 rounded-full text-xs flex items-center gap-1.5 animate-pulse">
+                                <span class="w-2 h-2 rounded-full bg-green-500 animate-ping"></span>Abierto
+                            </span>
+                        </div>
+                        <div class="flex justify-between py-4 text-gray-600">
+                            <span class="font-medium">Turno Mañana:</span>
+                            <span class="font-semibold text-gray-900">08:30 am - 12:30 pm</span>
+                        </div>
+                        <div class="flex justify-between py-4 text-gray-600">
+                            <span class="font-medium">Turno Tarde:</span>
+                            <span class="font-semibold text-gray-900">16:30 pm - 20:30 pm</span>
+                        </div>
+                        <div class="flex justify-between py-4 text-gray-400">
+                            <span>Domingos:</span>
+                            <span class="font-medium">Cerrado</span>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-xl text-center text-xs text-gray-500">
+                        <i class="fa-solid fa-location-dot text-azul-rp mr-1"></i> Presidencia Roque Sáenz Peña, Chaco.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-16 px-6 max-w-7xl mx-auto" id="galeria-seccion">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-2">Galería de Fotos de la Oficina</h2>
+            <p class="text-gray-500 max-w-2xl mx-auto">Explorá fotos reales de nuestros eventos, talleres, deliciosas recetas y capacitaciones semanales en Sáenz Peña.</p>
+            <div class="w-16 h-1 bg-azul-rp mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-2 mb-8" id="galleryFilters">
+            <button class="filter-btn px-4 py-2.5 text-xs md:text-sm font-semibold rounded-full bg-azul-rp text-white transition duration-300 shadow-sm" onclick="setGalleryCategory('todos', this)">Todas las Fotos</button>
+            <button class="filter-btn px-4 py-2.5 text-xs md:text-sm font-semibold rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition duration-300 shadow-sm" onclick="setGalleryCategory('demos', this)">Demostraciones</button>
+            <button class="filter-btn px-4 py-2.5 text-xs md:text-sm font-semibold rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition duration-300 shadow-sm" onclick="setGalleryCategory('capacitaciones', this)">Capacitaciones</button>
+            <button class="filter-btn px-4 py-2.5 text-xs md:text-sm font-semibold rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition duration-300 shadow-sm" onclick="setGalleryCategory('equipo', this)">Eventos y Equipo</button>
+        </div>
+
+        <div class="relative max-w-5xl mx-auto overflow-hidden rounded-2xl shadow-2xl border border-gray-100 bg-gray-950 group">
+            <div class="relative aspect-[16/10] md:aspect-[16/9] w-full flex items-center justify-center overflow-hidden" id="officeCarouselViewport">
+                <div id="carouselBgBlur" class="absolute inset-0 bg-cover bg-center scale-110 blur-xl opacity-35 transition-all duration-700 ease-in-out"></div>
+                
+                <div class="flex h-full w-full transition-transform duration-500 ease-in-out" id="officeCarouselTrack"></div>
+
+                <div class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/80 via-black/40 to-transparent pointer-events-none"></div>
+
+                <div class="absolute bottom-6 inset-x-6 text-white text-center pointer-events-none z-10">
+                    <span id="activeSlideCategory" class="inline-block bg-azul-rp/80 backdrop-blur text-[10px] md:text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-full mb-2">CATEGORIA</span>
+                    <h3 id="activeSlideCaption" class="text-base md:text-2xl font-extrabold tracking-wide drop-shadow-md">Descripción de la Foto</h3>
+                </div>
+
+                <button class="absolute top-1/2 -translate-y-1/2 left-4 bg-white/95 hover:bg-azul-rp hover:text-white text-gray-800 w-11 h-11 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 z-20 hover:scale-110 active:scale-95" onclick="moveOfficeGallerySlide(-1)">
+                    <i class="fa-solid fa-chevron-left text-sm md:text-base"></i>
+                </button>
+                <button class="absolute top-1/2 -translate-y-1/2 right-4 bg-white/95 hover:bg-azul-rp hover:text-white text-gray-800 w-11 h-11 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 z-20 hover:scale-110 active:scale-95" onclick="moveOfficeGallerySlide(1)">
+                    <i class="fa-solid fa-chevron-right text-sm md:text-base"></i>
+                </button>
+
+                <div class="absolute top-4 right-4 bg-black/60 backdrop-blur text-white px-3 py-1 rounded-full text-xs font-semibold z-20 tracking-wider">
+                    <span id="activeSlideNum">1</span> / <span id="totalSlideNum">21</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-5xl mx-auto mt-4 px-2">
+            <p class="text-xs text-gray-400 mb-2 font-medium text-center">Deslizá para ver más miniaturas o hacé clic para saltar a una foto:</p>
+            <div class="flex gap-2 overflow-x-auto py-2 no-scrollbar scroll-smooth" id="officeCarouselThumbs"></div>
+        </div>
+    </section>
+
+    <section class="bg-gradient-to-br from-azul-rp to-azul-oscuro-rp py-16 px-6 text-white text-center" id="contacto">
+        <div class="max-w-3xl mx-auto space-y-6">
+            <div class="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto text-3xl shadow-lg">
+                <i class="fa-brands fa-whatsapp text-green-400"></i>
+            </div>
+            <h2 class="text-3xl font-extrabold md:text-4xl">¿Querés Agendar tu Demostración o Sumarte al Equipo?</h2>
+            <p class="text-blue-100 text-base md:text-lg max-w-2xl mx-auto">
+                Escribinos directamente por WhatsApp. Te responderemos al instante para agendar una demostración interactiva en tu casa, una capacitación gratuita o informarte sobre nuestras charlas de negocios.
+            </p>
+            <div class="pt-4 flex flex-col sm:flex-row justify-center gap-4">
+                <a id="waDemoBtn" href="https://wa.me/543644400000?text=Hola!%20Quiero%20solicitar%20una%20demostraci%C3%B3n%20sin%20cargo%20en%20S%C3%A1enz%20Pe%C3%B1a" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3 text-base md:text-lg">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i> Solicitar Demo Gratis
+                </a>
+                <a id="waTeamBtn" href="https://wa.me/543644400000?text=Hola!%20Quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20la%20oportunidad%20de%20negocio%20de%20Royal%20Prestige" target="_blank" class="bg-white hover:bg-gray-100 text-azul-oscuro-rp font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-3 text-base md:text-lg">
+                    <i class="fa-solid fa-briefcase"></i> Postularme al Equipo
+                </a>
+            </div>
+            <p class="text-xs text-blue-200 pt-2">Oficina Autorizada Presidencia Roque Sáenz Peña, Chaco, Argentina.</p>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-10 px-6 text-center border-t border-gray-800">
+        <div class="max-w-7xl mx-auto space-y-4">
+            <p class="text-sm">&copy; 2026 Oficina Autorizada Royal Prestige® Sáenz Peña. Todos los derechos reservados.</p>
+            <p class="text-xs text-gray-600 max-w-xl mx-auto leading-relaxed">
+                Este sitio es propiedad de un distribuidor autorizado independiente de Royal Prestige®. Los contenidos, fotos reales y propuestas laborales pertenecen exclusivamente a la oficina de Presidencia Roque Sáenz Peña, Chaco.
+            </p>
+        </div>
+    </footer>
+
+    <div id="loginModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full mx-4 shadow-2xl relative border border-gray-100 transform scale-95 transition-transform duration-300">
+            <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-blue-50 text-azul-rp rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3 class="text-2xl font-extrabold text-gray-950">Acceso Administrativo</h3>
+                <p class="text-sm text-gray-500 mt-1">Ingresá tus credenciales de oficina autorizada</p>
+            </div>
+            <form onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Usuario</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-user absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <input type="text" id="adminUser" required placeholder="OFICINASP" class="w-full bg-gray-50 border border-gray-200 rounded-xl py-3 pl-10 pr-4 text-sm font-semibold text-gray-900 focus:outline-none focus:ring-2 focus:ring-azul-rp focus:bg-white transition-all">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-600 mb-1">Contraseña</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-lock absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                        <input type="password" id="adminPass" required placeholder="••••••••" class="w-full bg-gray-50 border border-gray-200 rounded-xl py-3 pl-10 pr-10 text-sm font-semibold text-gray-900 focus:outline-none focus:ring-2 focus:ring-azul-rp focus:bg-white transition-all">
+                        <button type="button" onclick="togglePassView()" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 focus:outline-none">
+                            <i class="fa-solid fa-eye" id="passEyeIcon"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="loginErrorMsg" class="text-red-500 text-xs font-semibold text-center hidden">
+                    <i class="fa-solid fa-circle-exclamation mr-1"></i> Usuario o contraseña incorrectos.
+                </div>
+                <button type="submit" class="w-full bg-azul-rp hover:bg-azul-oscuro-rp text-white font-bold py-3 rounded-xl shadow-lg transition-all duration-300">
+                    Iniciar Sesión
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="dashboardModal" class="fixed inset-0 bg-black/95 backdrop-blur-md z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-gray-50 rounded-3xl w-full max-w-[95%] lg:max-w-7xl h-[95vh] flex flex-col md:flex-row overflow-hidden shadow-2xl border border-gray-200 transform scale-95 transition-transform duration-300 mx-4">
+            
+            <!-- Sidebar Navigation Inside Dashboard -->
+            <div class="bg-azul-oscuro-rp text-white p-6 md:w-64 flex flex-col justify-between shrink-0">
+                <div class="space-y-6">
+                    <div class="flex items-center gap-3">
+                        <img src="https://www.royalprestige.com/ResourcePackages/RoyalPrestige/assets/dist/images/Logos/royalprestigelogovector.svg" alt="Royal Prestige" class="h-8 brightness-0 invert object-contain">
+                        <span class="text-xs bg-white/20 px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-widest">ADMIN</span>
+                    </div>
+                    <div class="space-y-1">
+                        <button onclick="switchTab('leads')" id="tabBtn-leads" class="w-full text-left py-2.5 px-3 rounded-xl text-sm font-bold flex items-center gap-2 bg-white/10 text-white transition-all">
+                            <i class="fa-solid fa-gift"></i> Sistema de Premios
+                        </button>
+                        <button onclick="switchTab('stats')" id="tabBtn-stats" class="w-full text-left py-2.5 px-3 rounded-xl text-sm font-bold flex items-center gap-2 text-gray-300 hover:bg-white/5 hover:text-white transition-all">
+                            <i class="fa-solid fa-code"></i> Obtener Apps Script
+                        </button>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <div class="p-3 bg-white/5 rounded-xl text-xs space-y-1">
+                        <p class="font-semibold text-blue-200">Oficina Sáenz Peña</p>
+                        <p class="text-gray-400">Sesión iniciada</p>
+                    </div>
+                    <button onclick="logoutAdmin()" class="w-full bg-red-600 hover:bg-red-700 text-white py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all">
+                        <i class="fa-solid fa-power-off"></i> Cerrar Sesión
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dashboard Main Content Stream -->
+            <div class="flex-1 flex flex-col overflow-hidden">
+                <header class="bg-white border-b border-gray-200 p-6 flex justify-between items-center">
+                    <div>
+                        <h2 id="dashboardTitle" class="text-xl font-black text-gray-950">Sistema de Premios: Demostraciones & Referidos</h2>
+                        <p class="text-xs text-gray-400">Duplica la plantilla oficial ("Sheet1") y califica lotes de 10 a 19 referidos de inmediato.</p>
+                    </div>
+                    <button onclick="closeDashboardModal()" class="text-gray-400 hover:text-gray-600 transition-all">
+                        <i class="fa-solid fa-circle-xmark text-2xl"></i>
+                    </button>
+                </header>
+
+                <div class="flex-1 overflow-y-auto p-6">
+                    
+                    <!-- TAB: Lead Form Loading Area (Spreadsheet Mapping system) -->
+                    <div id="tab-leads" class="space-y-6">
+                        
+                        <!-- APP SCRIPT KEY PARAMETER -->
+                        <div class="p-4 bg-yellow-50 border border-yellow-200 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4">
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">🔗</span>
+                                <div>
+                                    <h4 class="text-xs font-black uppercase text-yellow-800 tracking-wider">Configurar Enlace Apps Script</h4>
+                                    <p class="text-xs text-yellow-600">Pegá aquí el enlace generado por tu Google Apps Script de forma obligatoria antes de enviar.</p>
+                                </div>
+                            </div>
+                            <input type="url" id="leadScriptUrl" placeholder="https://script.google.com/macros/s/..." class="w-full md:w-96 bg-white border border-yellow-300 rounded-xl py-2 px-3 text-xs font-semibold text-gray-900 focus:ring-1 focus:ring-azul-rp focus:outline-none transition-all">
+                        </div>
+
+                        <form id="googleSheetLeadForm" onsubmit="handleLeadSubmit(event)" class="space-y-6">
+                            
+                            <!-- SECTION 1: ANFITRION & DEMO DETAILS -->
+                            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-4">
+                                <h3 class="text-sm font-extrabold uppercase text-azul-rp tracking-wider flex items-center gap-2 border-b pb-2">
+                                    <i class="fa-solid fa-user-tie"></i> 1. Datos Generales de la Demostración (E1 - E7)
+                                </h3>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">Equipo Destino (Drive)</label>
+                                        <select id="leadTeam" required class="w-full bg-gray-50 border border-gray-200 rounded-xl py-2.5 px-4 text-sm font-semibold text-gray-900 focus:ring-2 focus:ring-azul-rp focus:bg-white focus:outline-none transition-all">
+                                            <option value="EQ-KAIROS">EQUIPO KAIROS</option>
+                                            <option value="EQ-RITTZ">EQUIPO RITTZ</option>
+                                            <option value="EQ-CIJU">EQUIPO CIJU</option>
+                                            <option value="EQ-PROMEZ">EQUIPO PROMEZ</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">Representante / Distribuidor</label>
+                                        <input type="text" id="leadRepresentative" required placeholder="Ej: Marcos Pérez" class="w-full bg-gray-50 border border-gray-200 rounded-xl py-2.5 px-4 text-sm font-semibold text-gray-900 focus:ring-2 focus:ring-azul-rp focus:bg-white focus:outline-none transition-all">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">Nombre Anfitrión (Prospecto)</label>
+                                        <input type="text" id="leadName" required placeholder="Ej: Mariela Benítez" class="w-full bg-gray-50 border border-gray-200 rounded-xl py-2.5 px-4 text-sm font-semibold text-gray-900 focus:ring-2 focus:ring-azul-rp focus:bg-white focus:outline-none transition-all">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">Número de Celular / WhatsApp</label>
+                                        <input type="tel" id="leadPhone" required placeholder="Ej: 3644239121" class="w-full bg-gray-50 border border-gray-200 rounded-xl py-2.5 px-4 text-sm font-semibold text-gray-900 focus:ring-2 focus:ring-azul-rp focus:bg-white focus:outline-none transition-all">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">Referido de</label>
+                                        <input type="text" id="leadReferidoDe" placeholder="Ej: Juan Gómez" class="w-full bg-gray-50 border border-gray-200 rounded-xl py-2.5 px-4 text-sm font-semibold text-gray-900 focus:ring-2 focus:ring-azul-rp focus:bg-white focus:outline-none transition-all">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">Regalo Demo Entregado</label>
+                                        <input type="text" id="leadRegalo" placeholder="Ej: Pelador / Espátula" class="w-full bg-gray-50 border border-gray-200 rounded-xl py-2.5 px-4 text-sm font-semibold text-gray-900 focus:ring-2 focus:ring-azul-rp focus:bg-white focus:outline-none transition-all">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">Fecha de la Demo</label>
+                                        <input type="date" id="leadFechaDemo" required class="w-full bg-gray-50 border border-gray-200 rounded-xl py-2.5 px-4 text-sm font-semibold text-gray-900 focus:ring-2 focus:ring-azul-rp focus:bg-white focus:outline-none transition-all">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">Fecha de Inicio / Carga</label>
+                                        <input type="date" id="leadFechaInicio" required class="w-full bg-gray-50 border border-gray-200 rounded-xl py-2.5 px-4 text-sm font-semibold text-gray-900 focus:ring-2 focus:ring-azul-rp focus:bg-white focus:outline-none transition-all">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SECTION 2: REFERRALS DYNAMIC MATRIX -->
+                            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-4">
+                                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 border-b pb-2">
+                                    <h3 class="text-sm font-extrabold uppercase text-green-600 tracking-wider flex items-center gap-2">
+                                        <i class="fa-solid fa-users"></i> 2. Cargar Referidos / Calificados (Mínimo 10 - Máximo 19)
+                                    </h3>
+                                    <span id="referralsCounter" class="bg-green-100 text-green-800 text-xs font-black px-2.5 py-1 rounded-full">
+                                        Total: 10 Referidos Cargados
+                                    </span>
+                                </div>
+
+                                <div class="overflow-x-auto">
+                                    <table class="w-full text-left border-collapse min-w-[1000px]">
+                                        <thead>
+                                            <tr class="bg-gray-100/80 text-[10px] font-extrabold uppercase text-gray-500 tracking-wider border-b border-gray-200">
+                                                <th class="p-2 w-10">N°</th>
+                                                <th class="p-2">Nombre completo</th>
+                                                <th class="p-2 w-44">Relación</th>
+                                                <th class="p-2 w-44">Teléfono</th>
+                                                <th class="p-2 w-32">Pareja</th>
+                                                <th class="p-2 w-32">Trabajo / s</th>
+                                                <th class="p-2 w-28">Cantidad Personas</th>
+                                                <th class="p-2">Observaciones</th>
+                                                <th class="p-2 w-12 text-center">Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="referralsTableBody" class="divide-y divide-gray-100">
+                                            <!-- Dynamically generated Rows of Referrals -->
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="flex justify-between items-center pt-2">
+                                    <button type="button" onclick="addReferralRow()" class="bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-1.5 transition-all">
+                                        <i class="fa-solid fa-plus"></i> Añadir Referido Adicional (+1)
+                                    </button>
+                                    <p class="text-[11px] text-gray-400 font-medium">Recomendable: Cargar 10 referidos mínimos para calificar por premio.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex justify-end pt-2">
+                                <button type="submit" id="submitLeadBtn" class="bg-azul-rp hover:bg-azul-oscuro-rp text-white font-extrabold px-12 py-4 rounded-2xl transition-all shadow-xl flex items-center justify-center gap-2 text-base w-full md:w-auto">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i> Cargar Demostración y Crear Pestaña
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- TAB: Analytics Dashboard (Simulated Metrics) -->
+                    <div id="tab-stats" class="hidden space-y-6">
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-4">
+                            <h3 class="text-sm font-extrabold uppercase text-gray-900 tracking-wider flex items-center gap-2">
+                                <i class="fa-solid fa-laptop-code text-azul-rp"></i> Código Google Apps Script Unificado
+                            </h3>
+                            <p class="text-xs text-gray-500">
+                                Para integrar esta web con tus planillas de Drive, abre tu <a href="https://script.google.com" target="_blank" class="text-azul-rp font-bold underline">Google Apps Script</a>, reemplaza todo el contenido con este código, impleméntalo como <strong>Aplicación Web</strong> dándole permisos de acceso a <strong>"Cualquiera"</strong>, y copia el enlace obtenido en la barra superior.
+                            </p>
+                            
+                            <textarea readonly rows="15" class="w-full bg-gray-950 text-green-400 p-4 rounded-xl font-mono text-xs focus:outline-none resize-none select-all" id="appsScriptText">
+// CONFIGURACIÓN GENERAL DE EQUIPOS
+const PLANILLAS_EQUIPOS = {
+  "EQ-KAIROS": "https://docs.google.com/spreadsheets/d/1qPaEI1NReUWBTDubCdzqkIQtnOq85KOdOuw_nCwYd9A/edit",
+  "EQ-RITTZ":  "https://docs.google.com/spreadsheets/d/1SR1aFHiwL9hdOz8kuRvbz30hCJ4PyIhy02DS-GvLtPc/edit", 
+  "EQ-PROMEZ": "https://docs.google.com/spreadsheets/d/1BkRzVQKpwGAPn1ZtHSM5rdEj8LafwE-284LNN7_9ShQ/edit",
+  "EQ-CIJU" :  "https://docs.google.com/spreadsheets/d/1RtTnui2pEJFYEcQu5b29I70UWWpRSo-K_-L27FqGqb8/edit" 
+};
+
+const NOMBRE_HOJA_PLANTILLA = "Sheet1"; 
+
+function doPost(e) {
+  try {
+    if (!e || !e.postData || !e.postData.contents) {
+      return responderJSON({status: "error", message: "Sin datos recibidos"});
+    }
+    
+    const datos = JSON.parse(e.postData.contents);
+    const resultado = procesarYDuplicarPlanilla(datos);
+    return responderJSON({status: "success", info: resultado});
+  } catch (error) {
+    return responderJSON({status: "error", message: error.toString()});
+  }
+}
+
+function doGet(e) {
+  return ContentService.createTextOutput("Conexión activa con el panel web de Sáenz Peña.");
+}
+
+function procesarYDuplicarPlanilla(datos) {
+  let IDNormalizado = datos.team.toUpperCase().replace(/[\s_]/g, "").trim();
+  if (!IDNormalizado.startsWith("EQ-")) IDNormalizado = "EQ-" + IDNormalizado;
+
+  const urlPlanilla = PLANILLAS_EQUIPOS[IDNormalizado];
+  if (!urlPlanilla) throw new Error("El ID de Equipo '" + datos.team + "' no está registrado.");
+  
+  const libro = SpreadsheetApp.openByUrl(urlPlanilla);
+  let plantilla = libro.getSheetByName(NOMBRE_HOJA_PLANTILLA) || libro.getSheets()[0];
+  
+  const nombreNuevaHoja = (datos.nombre_demo || "Nueva Demo").trim() + " (" + (datos.fecha_demo || "Sin Fecha").replace(/\//g, "-").trim() + ")";
+  let nuevaHoja = libro.getSheetByName(nombreNuevaHoja);
+  
+  if (nuevaHoja) {
+    nuevaHoja = plantilla.copyTo(libro).setName(nombreNuevaHoja + " - " + Math.floor(Date.now() / 1000));
+  } else {
+    nuevaHoja = plantilla.copyTo(libro).setName(nombreNuevaHoja);
+  }
+  nuevaHoja.showSheet();
+  
+  // Rellenar cabecera según image_531545.png
+  nuevaHoja.getRange(1, 5).setValue(datos.fecha_demo_formatted || ""); 
+  nuevaHoja.getRange(2, 5).setValue(datos.referido_de || "");   
+  nuevaHoja.getRange(3, 5).setValue(datos.nombre_demo || "");    
+  nuevaHoja.getRange(4, 5).setValue(datos.telefono_demo || "");  
+  nuevaHoja.getRange(5, 5).setValue(datos.regalo_demo || "");    
+  nuevaHoja.getRange(6, 5).setValue(datos.representante || "");  
+  nuevaHoja.getRange(7, 5).setValue(datos.fecha_inicio_formatted || "");   
+  
+  // Rellenar referidos a partir de la fila 11
+  const filaInicioContactos = 11; 
+  datos.contactos.forEach((contacto, index) => {
+    let filaActual = filaInicioContactos + index;
+    nuevaHoja.getRange(filaActual, 3).setValue(contacto.nombre);       
+    nuevaHoja.getRange(filaActual, 4).setValue(contacto.relacion);     
+    nuevaHoja.getRange(filaActual, 5).setValue(contacto.telefono);     
+    nuevaHoja.getRange(filaActual, 6).setValue(contacto.pareja);       
+    nuevaHoja.getRange(filaActual, 7).setValue(contacto.trabajos);     
+    nuevaHoja.getRange(filaActual, 8).setValue(contacto.personas);     
+    nuevaHoja.getRange(filaActual, 9).setValue(contacto.observacion);  
+  });
+  
+  return "Pestaña creada correctamente: " + nuevaHoja.getName();
+}
+
+function responderJSON(objeto) {
+  return ContentService.createTextOutput(JSON.stringify(objeto)).setMimeType(ContentService.MimeType.JSON);
+}</textarea>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-[9999] flex flex-col gap-2 pointer-events-none"></div>
+
+    <script>
+        // --- DATA DE LA GALERÍA COMPLETA (21 Fotos de Google Drive) ---
+        const galleryData = [
+            { id: "11x57MCK7hPax3lXSD44MYQrV2GNDe1Xi", caption: "Taller de Cocina Interactiva", cat: "demos", catLabel: "Demostración" },
+            { id: "1v5lh7Ct8N-1elBt6jxkWuzm7BD-RHQNQ", caption: "Nuestro Gran Equipo de Asesores Oficiales", cat: "equipo", catLabel: "Equipo" },
+            { id: "12NlyzutYQUJpxnFqjVFhXPJ0M6VBG1XB", caption: "Capacitación Comercial Especializada", cat: "capacitaciones", catLabel: "Capacitación" },
+            { id: "1y6i9YCBUt-OjQCQ1iFnbjMa4_RnYdFaI", caption: "Receta en Vivo Royal Prestige", cat: "demos", catLabel: "Demostración" },
+            { id: "1QKsCQJvTP7KYObI_kcgf0R6-kgk-EGjy", caption: "Premiación y Metas Alcanzadas", cat: "equipo", catLabel: "Equipo" },
+            { id: "156fAC1LYydHasX-1pDnfZLsenDx9GNr1", caption: "Presentación de Vajilla y Ollas", cat: "demos", catLabel: "Demostración" },
+            { id: "1D9oJpw0I8DfqafmPUcsRX6zwVytlHOF4", caption: "Taller de Liderazgo Comercial", cat: "capacitaciones", catLabel: "Capacitación" },
+            { id: "1Zcq2LpVY-V12eDWyWIMaQz4oIKpLr6p4", caption: "Cultura Organizacional e Integración", cat: "equipo", catLabel: "Equipo" },
+            { id: "1-liVDZlOp43_IxoaJqX60FhmeYISw_fy", caption: "Platos Terminados Increíbles", cat: "demos", catLabel: "Demostración" },
+            { id: "1KsvrujRAJk7eUahvMJ1lWewHms_b9Jpr", caption: "Degustación en Demostración", cat: "demos", catLabel: "Demostración" },
+            { id: "1h8UxUvg2CqL8bLt4-Tc46vt8GO0ZLdYk", caption: "Entrenamiento Semanal del Equipo", cat: "capacitaciones", catLabel: "Capacitación" },
+            { id: "18b7VTaplW9FWYKE4g30jXzqIQ5CgLyPi", caption: "Degustación de Paella Sin Aceite", cat: "demos", catLabel: "Demostración" },
+            { id: "12HP2I4RI2XctMTizi0mhPSrQNfNYPdqq", caption: "Premios y Reconocimientos Especiales", cat: "equipo", catLabel: "Equipo" },
+            { id: "1DmcSgl0MEP2FwUKx7oDaSrvZmIjJzJoJ", caption: "Asesores Demostrando en Vivo", cat: "demos", catLabel: "Demostración" },
+            { id: "140OZmApaHu7DOmtcG6LnRaY2oDO2tYMX", caption: "Formación de Nuevos Talentos", cat: "capacitaciones", catLabel: "Capacitación" },
+            { id: "1gwjxuJK5QOIGzWf--Nw79jD_qjGEqvUw", caption: "Festejos Navideños y Logros de Oficina", cat: "equipo", catLabel: "Equipo" },
+            { id: "1pN0iCUWxkzk4-QKfsTWu8SBaeXlV0Wbb", caption: "Entrega de Incentivos Especiales", cat: "equipo", catLabel: "Equipo" },
+            { id: "1KoQHqLrzpnWaYU6PzKMnu09CzdwFlrKF", caption: "Taller Comercial Presencial", cat: "capacitaciones", catLabel: "Capacitación" },
+            { id: "1xhYM1X5LLwAwyOEnS2LdGccpS4o9EVb4", caption: "Cierre de Año Exitoso de la Oficina", cat: "equipo", catLabel: "Equipo" },
+            { id: "1irfpZTI-xqGd7WkFem21lD5BgtVrc6-v", caption: "Sorteos de Fin de Mes", cat: "equipo", catLabel: "Equipo" },
+            { id: "1ARNReGa1h4ae_0tUy52vWVl90mHaeIys", caption: "Reunión de Confraternidad", cat: "equipo", catLabel: "Equipo" }
+        ];
+
+        // --- CARRUSEL PRINCIPAL DE PRODUCTOS ---
+        let productSlideIndex = 0;
+        const pSlides = document.querySelectorAll('#carouselSlides > div');
+        const totalPSlides = pSlides.length;
+        const carouselSlides = document.getElementById('carouselSlides');
+        const pDots = document.querySelectorAll('.dot');
+
+        function updateProductSlide() {
+            if(!carouselSlides) return;
+            carouselSlides.style.transform = `translateX(-${productSlideIndex * 100}%)`;
+            pDots.forEach((dot, index) => {
+                if (index === productSlideIndex) {
+                    dot.classList.add('bg-azul-rp', 'w-6');
+                    dot.classList.remove('bg-gray-300', 'w-3');
+                } else {
+                    dot.classList.remove('bg-azul-rp', 'w-6');
+                    dot.classList.add('bg-gray-300', 'w-3');
+                }
+            });
+        }
+
+        function moveSlide(direction) {
+            productSlideIndex += direction;
+            if (productSlideIndex >= totalPSlides) {
+                productSlideIndex = 0;
+            } else if (productSlideIndex < 0) {
+                productSlideIndex = totalPSlides - 1;
+            }
+            updateProductSlide();
+            resetProductTimer();
+        }
+
+        function currentProductSlide(index) {
+            productSlideIndex = index;
+            updateProductSlide();
+            resetProductTimer();
+        }
+
+        let productInterval = setInterval(() => moveSlide(1), 5000);
+        function resetProductTimer() {
+            clearInterval(productInterval);
+            productInterval = setInterval(() => moveSlide(1), 5000);
+        }
+
+        updateProductSlide();
+
+        // --- OFFICE GALLERY SLIDER MANAGEMENT ---
+        let currentFilter = 'todos';
+        let filteredPhotos = [...galleryData];
+        let activeOfficeIdx = 0;
+
+        const officeCarouselTrack = document.getElementById('officeCarouselTrack');
+        const officeCarouselThumbs = document.getElementById('officeCarouselThumbs');
+        const activeCaption = document.getElementById('activeSlideCaption');
+        const activeCategory = document.getElementById('activeSlideCategory');
+        const bgBlur = document.getElementById('carouselBgBlur');
+        const activeNum = document.getElementById('activeSlideNum');
+        const totalNum = document.getElementById('totalSlideNum');
+
+        function initOfficeCarousel() {
+            if (!officeCarouselTrack) return;
+            officeCarouselTrack.innerHTML = '';
+            officeCarouselThumbs.innerHTML = '';
+
+            filteredPhotos.forEach((item, index) => {
+                const slide = document.createElement('div');
+                slide.className = 'min-w-full h-full flex items-center justify-center relative select-none';
+                slide.innerHTML = `
+                    <img src="https://lh3.googleusercontent.com/d/${item.id}" 
+                         alt="${item.caption}" 
+                         class="max-w-full max-h-full object-contain md:p-2 rounded-lg"
+                         loading="lazy"
+                         onerror="this.src='https://placehold.co/800x600/1A3D70/FFFFFF?text=Royal+Prestige'">
+                `;
+                officeCarouselTrack.appendChild(slide);
+
+                const thumb = document.createElement('div');
+                thumb.className = `flex-shrink-0 w-16 h-12 md:w-20 md:h-14 rounded-lg overflow-hidden cursor-pointer border-2 transition-all duration-300 ${index === activeOfficeIdx ? 'border-azul-rp scale-105 shadow-md' : 'border-transparent opacity-60 hover:opacity-100'}`;
+                thumb.onclick = () => jumpToOfficeSlide(index);
+                thumb.innerHTML = `
+                    <img src="https://lh3.googleusercontent.com/d/${item.id}" alt="${item.caption}" class="w-full h-full object-cover">
+                `;
+                officeCarouselThumbs.appendChild(thumb);
+            });
+
+            updateOfficeCarouselPosition(true);
+        }
+
+        function updateOfficeCarouselPosition(instant = false) {
+            if (filteredPhotos.length === 0 || !officeCarouselTrack) return;
+
+            officeCarouselTrack.style.transition = instant ? 'none' : 'transform 0.5s ease-in-out';
+            officeCarouselTrack.style.transform = `translateX(-${activeOfficeIdx * 100}%)`;
+
+            const activePhoto = filteredPhotos[activeOfficeIdx];
+            activeCaption.innerText = activePhoto.caption;
+            activeCategory.innerText = activePhoto.catLabel;
+            bgBlur.style.backgroundImage = `url('https://lh3.googleusercontent.com/d/${activePhoto.id}')`;
+
+            activeNum.innerText = activeOfficeIdx + 1;
+            totalNum.innerText = filteredPhotos.length;
+
+            const thumbs = officeCarouselThumbs.children;
+            Array.from(thumbs).forEach((thumb, index) => {
+                if (index === activeOfficeIdx) {
+                    thumb.classList.add('border-azul-rp', 'scale-105', 'shadow-md');
+                    thumb.classList.remove('border-transparent', 'opacity-60');
+                    
+                    const container = officeCarouselThumbs;
+                    const scrollTarget = thumb.offsetLeft - (container.clientWidth / 2) + (thumb.clientWidth / 2);
+                    container.scrollTo({ left: scrollTarget, behavior: 'smooth' });
+                } else {
+                    thumb.classList.remove('border-azul-rp', 'scale-105', 'shadow-md');
+                    thumb.classList.add('border-transparent', 'opacity-60');
+                }
+            });
+        }
+
+        function moveOfficeGallerySlide(direction) {
+            if (filteredPhotos.length === 0) return;
+            activeOfficeIdx += direction;
+            if (activeOfficeIdx >= filteredPhotos.length) {
+                activeOfficeIdx = 0;
+            } else if (activeOfficeIdx < 0) {
+                activeOfficeIdx = filteredPhotos.length - 1;
+            }
+            updateOfficeCarouselPosition();
+            resetOfficeCarouselTimer();
+        }
+
+        function jumpToOfficeSlide(index) {
+            activeOfficeIdx = index;
+            updateOfficeCarouselPosition();
+            resetOfficeCarouselTimer();
+        }
+
+        function setGalleryCategory(category, buttonElement) {
+            currentFilter = category;
+
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.className = "filter-btn px-4 py-2.5 text-xs md:text-sm font-semibold rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition duration-300 shadow-sm";
+            });
+            buttonElement.className = "filter-btn px-4 py-2.5 text-xs md:text-sm font-semibold rounded-full bg-azul-rp text-white transition duration-300 shadow-sm";
+
+            if (category === 'todos') {
+                filteredPhotos = [...galleryData];
+            } else {
+                filteredPhotos = galleryData.filter(item => item.cat === category);
+            }
+
+            activeOfficeIdx = 0;
+            initOfficeCarousel();
+        }
+
+        let officeTimer = setInterval(() => moveOfficeGallerySlide(1), 6000);
+        function resetOfficeCarouselTimer() {
+            clearInterval(officeTimer);
+            officeTimer = setInterval(() => moveOfficeGallerySlide(1), 6000);
+        }
+
+        initOfficeCarousel();
+
+        // Mobile touch gestures / swipes
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        function handleOfficeSwipe() {
+            const threshold = 50;
+            if (touchEndX < touchStartX - threshold) {
+                moveOfficeGallerySlide(1);
+            }
+            if (touchEndX > touchStartX + threshold) {
+                moveOfficeGallerySlide(-1);
+            }
+        }
+
+        const viewport = document.getElementById('officeCarouselViewport');
+        if (viewport) {
+            viewport.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            viewport.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleOfficeSwipe();
+            }, { passive: true });
+        }
+
+        document.addEventListener('keydown', e => {
+            if (!viewport) return;
+            const rect = viewport.getBoundingClientRect();
+            const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
+            if (isVisible) {
+                if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    moveOfficeGallerySlide(1);
+                }
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    moveOfficeGallerySlide(-1);
+                }
+            }
+        });
+
+        // --- ADMINISTRATOR ACCESS FUNCTIONS ---
+        function showNotification(msg, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            if(!container) return;
+            const toast = document.createElement('div');
+            
+            const colors = {
+                success: 'bg-green-600 border-green-700 text-white',
+                error: 'bg-red-600 border-red-700 text-white',
+                info: 'bg-azul-rp border-azul-oscuro-rp text-white'
+            };
+
+            const icons = {
+                success: '<i class="fa-solid fa-circle-check"></i>',
+                error: '<i class="fa-solid fa-circle-exclamation"></i>',
+                info: '<i class="fa-solid fa-circle-info"></i>'
+            };
+
+            toast.className = `flex items-center gap-2.5 px-4 py-3 rounded-xl shadow-lg border text-sm font-semibold pointer-events-auto transition-all duration-300 transform translate-y-5 opacity-0 ${colors[type] || colors.info}`;
+            toast.innerHTML = `${icons[type] || icons.info} <span>${msg}</span>`;
+            
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-5', 'opacity-0');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-5', 'opacity-0');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 5000);
+        }
+
+        function openLoginModal() {
+            const modal = document.getElementById('loginModal');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.add('opacity-100');
+                modal.querySelector('.transform').classList.remove('scale-95');
+            }, 10);
+            document.getElementById('adminUser').value = '';
+            document.getElementById('adminPass').value = '';
+            document.getElementById('loginErrorMsg').classList.add('hidden');
+        }
+
+        function closeLoginModal() {
+            const modal = document.getElementById('loginModal');
+            modal.classList.remove('opacity-100');
+            modal.querySelector('.transform').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        function togglePassView() {
+            const passInput = document.getElementById('adminPass');
+            const icon = document.getElementById('passEyeIcon');
+            if (passInput.type === 'password') {
+                passInput.type = 'text';
+                icon.className = 'fa-solid fa-eye-slash';
+            } else {
+                passInput.type = 'password';
+                icon.className = 'fa-solid fa-eye';
+            }
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const userVal = document.getElementById('adminUser').value.trim();
+            const passVal = document.getElementById('adminPass').value.trim();
+            const errorMsg = document.getElementById('loginErrorMsg');
+
+            if (userVal === "OFICINASP" && passVal === "OFICINAROYAL") {
+                errorMsg.classList.add('hidden');
+                closeLoginModal();
+                showNotification("¡Acceso correcto! Iniciando panel de control...", "success");
+                setTimeout(() => {
+                    openDashboardModal();
+                }, 400);
+            } else {
+                errorMsg.classList.remove('hidden');
+                showNotification("Error de autenticación. Verificá las credenciales.", "error");
+            }
+        }
+
+        // --- DASHBOARD CONTROL SYSTEM ---
+        function openDashboardModal() {
+            const dModal = document.getElementById('dashboardModal');
+            dModal.classList.remove('hidden');
+            setTimeout(() => {
+                dModal.classList.add('opacity-100');
+                dModal.querySelector('.transform').classList.remove('scale-95');
+            }, 10);
+            switchTab('leads');
+            
+            // Restore Google Script URL if already configured locally
+            const savedUrl = localStorage.getItem('royalPrestigeScriptUrl');
+            if (savedUrl) {
+                document.getElementById('leadScriptUrl').value = savedUrl;
+            }
+
+            // Prefill Dates with today's date
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('leadFechaDemo').value = today;
+            document.getElementById('leadFechaInicio').value = today;
+
+            // Generate referral grid
+            initReferralsGrid();
+        }
+
+        function closeDashboardModal() {
+            const dModal = document.getElementById('dashboardModal');
+            dModal.classList.remove('opacity-100');
+            dModal.querySelector('.transform').classList.add('scale-95');
+            setTimeout(() => {
+                dModal.classList.add('hidden');
+            }, 300);
+        }
+
+        function logoutAdmin() {
+            closeDashboardModal();
+            showNotification("Sesión administrativa cerrada correctamente.", "info");
+        }
+
+        function switchTab(tabId) {
+            document.getElementById('tab-leads').classList.add('hidden');
+            document.getElementById('tab-stats').classList.add('hidden');
+
+            const tabs = ['leads', 'stats'];
+            tabs.forEach(t => {
+                const btn = document.getElementById(`tabBtn-${t}`);
+                if (btn) btn.className = "w-full text-left py-2.5 px-3 rounded-xl text-sm font-bold flex items-center gap-2 text-gray-300 hover:bg-white/5 hover:text-white transition-all";
+            });
+
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tabBtn-${tabId}`);
+            if (activeBtn) activeBtn.className = "w-full text-left py-2.5 px-3 rounded-xl text-sm font-bold flex items-center gap-2 bg-white/10 text-white transition-all";
+
+            const titleEl = document.getElementById('dashboardTitle');
+            if (tabId === 'leads') titleEl.innerText = "Sistema de Premios: Demostraciones & Referidos";
+            if (tabId === 'stats') titleEl.innerText = "Integrar con Google Apps Script";
+        }
+
+        // --- STREAMING_CHUNK: Managing referrals grid and row addition/deletion ---
+        let currentReferralRowsCount = 10;
+        const maxReferralRows = 19;
+
+        function initReferralsGrid() {
+            const container = document.getElementById('referralsTableBody');
+            if(!container) return;
+            container.innerHTML = '';
+            currentReferralRowsCount = 0;
+
+            // Build initial 10 clean rows
+            for (let i = 1; i <= 10; i++) {
+                addReferralRow();
+            }
+        }
+
+        function addReferralRow() {
+            if (currentReferralRowsCount >= maxReferralRows) {
+                showNotification(`El límite máximo es de ${maxReferralRows} referidos para el template oficial.`, "error");
+                return;
+            }
+
+            currentReferralRowsCount++;
+            const container = document.getElementById('referralsTableBody');
+            const row = document.createElement('tr');
+            row.id = `refRow-${currentReferralRowsCount}`;
+            row.className = "hover:bg-gray-50/55 transition-all text-xs text-gray-700 font-medium";
+            
+            row.innerHTML = `
+                <td class="p-2 text-gray-400 font-bold text-center">${currentReferralRowsCount}</td>
+                <td class="p-1">
+                    <input type="text" placeholder="Nombre Completo" class="ref-input-nombre w-full bg-transparent border border-gray-100 rounded-lg py-1.5 px-2 focus:ring-1 focus:ring-azul-rp focus:bg-white focus:outline-none transition-all font-semibold text-gray-900">
+                </td>
+                <td class="p-1">
+                    <input type="text" placeholder="Ej: Madre, Amiga" class="ref-input-relacion w-full bg-transparent border border-gray-100 rounded-lg py-1.5 px-2 focus:ring-1 focus:ring-azul-rp focus:bg-white focus:outline-none transition-all">
+                </td>
+                <td class="p-1">
+                    <input type="tel" placeholder="N° Celular" class="ref-input-telefono w-full bg-transparent border border-gray-100 rounded-lg py-1.5 px-2 focus:ring-1 focus:ring-azul-rp focus:bg-white focus:outline-none transition-all text-azul-rp font-semibold">
+                </td>
+                <td class="p-1">
+                    <select class="ref-input-pareja w-full bg-transparent border border-gray-100 rounded-lg py-1.5 px-2 focus:ring-1 focus:ring-azul-rp focus:bg-white focus:outline-none transition-all">
+                        <option value="NO">NO</option>
+                        <option value="SI">SI</option>
+                    </select>
+                </td>
+                <td class="p-1">
+                    <input type="text" placeholder="Ej: Comercio, Docente" class="ref-input-trabajo w-full bg-transparent border border-gray-100 rounded-lg py-1.5 px-2 focus:ring-1 focus:ring-azul-rp focus:bg-white focus:outline-none transition-all">
+                </td>
+                <td class="p-1">
+                    <input type="number" min="1" max="20" placeholder="Cant." class="ref-input-personas w-full bg-transparent border border-gray-100 rounded-lg py-1.5 px-2 focus:ring-1 focus:ring-azul-rp focus:bg-white focus:outline-none transition-all text-center">
+                </td>
+                <td class="p-1">
+                    <input type="text" placeholder="Notas" class="ref-input-observacion w-full bg-transparent border border-gray-100 rounded-lg py-1.5 px-2 focus:ring-1 focus:ring-azul-rp focus:bg-white focus:outline-none transition-all">
+                </td>
+                <td class="p-1 text-center">
+                    <button type="button" onclick="removeReferralRow(${currentReferralRowsCount})" class="text-red-400 hover:text-red-600 transition-all p-1.5">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </td>
+            `;
+
+            container.appendChild(row);
+            updateReferralsCounter();
+        }
+
+        function removeReferralRow(id) {
+            if (currentReferralRowsCount <= 1) {
+                showNotification("Debés mantener al menos 1 fila de referido.", "error");
+                return;
+            }
+
+            const targetRow = document.getElementById(`refRow-${id}`);
+            if (targetRow) {
+                targetRow.remove();
+                currentReferralRowsCount--;
+                reIndexReferralRows();
+            }
+        }
+
+        function reIndexReferralRows() {
+            const container = document.getElementById('referralsTableBody');
+            const rows = container.children;
+            currentReferralRowsCount = 0;
+            
+            Array.from(rows).forEach((row, index) => {
+                currentReferralRowsCount++;
+                row.id = `refRow-${currentReferralRowsCount}`;
+                row.children[0].innerText = currentReferralRowsCount;
+                
+                // Update delete button
+                const btn = row.querySelector('button');
+                btn.setAttribute('onclick', `removeReferralRow(${currentReferralRowsCount})`);
+            });
+
+            updateReferralsCounter();
+        }
+
+        function updateReferralsCounter() {
+            const counter = document.getElementById('referralsCounter');
+            if (counter) {
+                counter.innerText = `Total: ${currentReferralRowsCount} Referidos Cargados`;
+            }
+        }
+
+        // --- STREAMING_CHUNK: Performing integration post to Google Apps Script Web App ---
+        async function handleLeadSubmit(event) {
+            event.preventDefault();
+
+            const scriptUrl = document.getElementById('leadScriptUrl').value.trim();
+            if (!scriptUrl) {
+                showNotification("Configurá la URL de Google Apps Script en la barra amarilla superior para poder realizar el envío.", "error");
+                return;
+            }
+
+            // Save Web App Script Link to local Storage
+            localStorage.setItem('royalPrestigeScriptUrl', scriptUrl);
+
+            // Fetch Header Info
+            const team = document.getElementById('leadTeam').value;
+            const representative = document.getElementById('leadRepresentative').value.trim();
+            const name = document.getElementById('leadName').value.trim();
+            const phone = document.getElementById('leadPhone').value.trim();
+            const referidoDe = document.getElementById('leadReferidoDe').value.trim();
+            const regalo = document.getElementById('leadRegalo').value.trim();
+            
+            const rawFechaDemo = document.getElementById('leadFechaDemo').value;
+            const rawFechaInicio = document.getElementById('leadFechaInicio').value;
+
+            // Formatter helper for dates dd/mm/yyyy
+            const formatDate = (rawDate) => {
+                if(!rawDate) return "";
+                const parts = rawDate.split('-');
+                if(parts.length === 3) return `${parts[2]}/${parts[1]}/${parts[0]}`;
+                return rawDate;
+            }
+
+            const fechaDemoFormatted = formatDate(rawFechaDemo);
+            const fechaInicioFormatted = formatDate(rawFechaInicio);
+
+            // Fetch Referrals Matrix Rows
+            const contacts = [];
+            const rows = document.getElementById('referralsTableBody').children;
+            let filledCount = 0;
+
+            Array.from(rows).forEach(row => {
+                const nombre = row.querySelector('.ref-input-nombre').value.trim();
+                const relacion = row.querySelector('.ref-input-relacion').value.trim();
+                const telefono = row.querySelector('.ref-input-telefono').value.trim();
+                const pareja = row.querySelector('.ref-input-pareja').value;
+                const trabajos = row.querySelector('.ref-input-trabajo').value.trim();
+                const personas = row.querySelector('.ref-input-personas').value.trim();
+                const observacion = row.querySelector('.ref-input-observacion').value.trim();
+
+                if (nombre) {
+                    filledCount++;
+                    contacts.push({
+                        nombre,
+                        relacion,
+                        telefono,
+                        pareja,
+                        trabajos,
+                        personas,
+                        observacion
+                    });
+                }
+            });
+
+            if (contacts.length < 1) {
+                showNotification("Debes ingresar al menos 1 Referido calificado (Nombre completo mínimo) para guardar la demostración.", "error");
+                return;
+            }
+
+            // Button status update
+            const submitBtn = document.getElementById('submitLeadBtn');
+            const originalBtnHtml = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch animate-spin text-lg"></i> Procesando y duplicando plantilla en Google Sheet...`;
+
+            // Prepare Payload Object
+            const payload = {
+                team,
+                representante: representative,
+                nombre_demo: name,
+                telefono_demo: phone,
+                referido_de: referidoDe,
+                regalo_demo: regalo,
+                fecha_demo: fechaDemoFormatted,
+                fecha_inicio: fechaInicioFormatted,
+                fecha_demo_formatted: fechaDemoFormatted,
+                fecha_inicio_formatted: fechaInicioFormatted,
+                contactos: contacts
+            };
+
+            try {
+                // Fetch Request targeting published Google Web App
+                const response = await fetch(scriptUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                // Under 'no-cors', we can assume delivery if fetch does not drop into catch
+                showNotification(`¡Demostración de "${name}" enviada correctamente! Se ha duplicado y cargado en el Sheet del equipo ${team}.`, "success");
+                
+                // Clear Fields except configurations
+                document.getElementById('leadName').value = '';
+                document.getElementById('leadPhone').value = '';
+                document.getElementById('leadReferidoDe').value = '';
+                document.getElementById('leadRegalo').value = '';
+                
+                // Reinitialize grid
+                initReferralsGrid();
+
+            } catch (error) {
+                console.error("Error sending lead to Google Sheet API: ", error);
+                showNotification("Ocurrió un error al procesar el envío. Verificá la URL del script en tu barra superior.", "error");
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnHtml;
+            }
+        }
+    </script>
+</body>
+</html>
