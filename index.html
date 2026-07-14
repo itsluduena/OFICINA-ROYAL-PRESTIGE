@@ -504,7 +504,7 @@
                             </p>
                             
                             <textarea readonly rows="15" class="w-full bg-gray-950 text-green-400 p-4 rounded-xl font-mono text-xs focus:outline-none resize-none select-all" id="appsScriptText">
-// DICCIONARIO DE PLANILLAS DE EQUIPOS (VINCULA TUS ENLACES DE GOOGLE SHEETS)
+// DICCIONARIO DE PLANILLAS DE EQUIPOS (SÁENZ PEÑA)
 const PLANILLAS_EQUIPOS = {
   "EQ-KAIROS": "https://docs.google.com/spreadsheets/d/1qPaEI1NReUWBTDubCdzqkIQtnOq85KOdOuw_nCwYd9A/edit",
   "EQ-RITTZ":  "https://docs.google.com/spreadsheets/d/1SR1aFHiwL9hdOz8kuRvbz30hCJ4PyIhy02DS-GvLtPc/edit", 
@@ -517,76 +517,91 @@ const NOMBRE_HOJA_PLANTILLA = "Sheet1";
 function doPost(e) {
   try {
     if (!e || !e.postData || !e.postData.contents) {
-      return responderJSON({status: "error", message: "Sin datos recibidos"});
+      return responderJSON({
+        status: "error", 
+        message: "No se recibieron datos en la petición."
+      });
     }
     
-    // Parsear el JSON directo enviado desde la página web de GitHub Pages
     var rawContents = e.postData.contents.trim();
     var datos = JSON.parse(rawContents);
     
-    // Validar e identificar el equipo seleccionado
     var equipoRaw = datos.team || datos.equipo_id;
     if (!equipoRaw) {
-      return responderJSON({status: "error", message: "Falta ID de Equipo en el envío"});
+      return responderJSON({
+        status: "error", 
+        message: "Error de origen: Falta el ID del equipo en el paquete de datos."
+      });
     }
     
-    // Normalizar ID del equipo (ej: "EQ-KAIROS")
-    let IDNormalizado = equipoRaw.toUpperCase().replace(/[\s_]/g, "").trim();
-    if (!IDNormalizado.startsWith("EQ-")) IDNormalizado = "EQ-" + IDNormalizado;
+    let idNormalizado = equipoRaw.toUpperCase().replace(/[\s_]/g, "").trim();
+    if (!idNormalizado.startsWith("EQ-")) {
+      idNormalizado = "EQ-" + idNormalizado;
+    }
 
-    // Obtener la URL de la planilla correspondiente
-    const urlPlanilla = PLANILLAS_EQUIPOS[IDNormalizado];
+    const urlPlanilla = PLANILLAS_EQUIPOS[idNormalizado];
     if (!urlPlanilla) {
-      return responderJSON({status: "error", message: "El ID de Equipo '" + IDNormalizado + "' no está registrado."});
+      return responderJSON({
+        status: "error", 
+        message: "El identificador de equipo '" + idNormalizado + "' no coincide con ninguna planilla registrada."
+      });
     }
     
-    // Abrir libro de Google Sheets
     const libro = SpreadsheetApp.openByUrl(urlPlanilla);
-    let plantilla = libro.getSheetByName(NOMBRE_HOJA_PLANTILLA) || libro.getSheets()[0];
+    let plantilla = libro.getSheetByName(NOMBRE_HOJA_PLANTILLA);
+    if (!plantilla) {
+      plantilla = libro.getSheets()[0];
+    }
     
-    // Definir el nombre de la nueva pestaña
-    const nombreNuevaHoja = (datos.nombre_demo || "Nueva Demo").trim() + " (" + (datos.fecha_demo || "Sin Fecha").replace(/\//g, "-").trim() + ")";
+    const nombreNuevaHoja = (datos.nombre_demo || "Demo Sin Nombre").trim() + " (" + (datos.fecha_demo || "Sin Fecha").replace(/\//g, "-").trim() + ")";
     let nuevaHoja = libro.getSheetByName(nombreNuevaHoja);
     
-    // Duplicar la plantilla ("Sheet1")
     if (nuevaHoja) {
-      nuevaHoja = plantilla.copyTo(libro).setName(nombreNuevaHoja + " - " + Math.floor(Date.now() / 1000));
+      const timestampUnico = Math.floor(Date.now() / 1000);
+      nuevaHoja = plantilla.copyTo(libro).setName(nombreNuevaHoja + " - " + timestampUnico);
     } else {
       nuevaHoja = plantilla.copyTo(libro).setName(nombreNuevaHoja);
     }
     nuevaHoja.showSheet();
     
-    // Rellenar cabecera de la demostración (E1 - E7)
-    nuevaHoja.getRange(1, 5).setValue(datos.fecha_demo || "");      // E1: Fecha Demo
+    nuevaHoja.getRange(1, 5).setValue(datos.fecha_demo || "");      // E1: Fecha de la Demo
     nuevaHoja.getRange(2, 5).setValue(datos.referido_de || "");    // E2: Referido de
-    nuevaHoja.getRange(3, 5).setValue(datos.nombre_demo || "");     // E3: Nombre Demo
-    nuevaHoja.getRange(4, 5).setValue(datos.telefono_demo || "");   // E4: Teléfono Demo
-    nuevaHoja.getRange(5, 5).setValue(datos.regalo_demo || "");     // E5: Regalo Demo
-    nuevaHoja.getRange(6, 5).setValue(datos.representante || "");   // E6: Representante
-    nuevaHoja.getRange(7, 5).setValue(datos.fecha_inicio || "");    // E7: Fecha Inicio
+    nuevaHoja.getRange(3, 5).setValue(datos.nombre_demo || "");     // E3: Nombre del Anfitrión
+    nuevaHoja.getRange(4, 5).setValue(datos.telefono_demo || "");   // E4: Teléfono
+    nuevaHoja.getRange(5, 5).setValue(datos.regalo_demo || "");     // E5: Regalo de Demo Entregado
+    nuevaHoja.getRange(6, 5).setValue(datos.representante || "");   // E6: Representante / Distribuidor
+    nuevaHoja.getRange(7, 5).setValue(datos.fecha_inicio || "");    // E7: Fecha de Inicio
     
-    // Rellenar grilla de contactos referidos calificados (C11 - I29)
     const filaInicioContactos = 11; 
-    datos.contactos.forEach((contacto, index) => {
-      let filaActual = filaInicioContactos + index;
-      nuevaHoja.getRange(filaActual, 3).setValue(contacto.nombre);       // Columna C: Nombre
-      nuevaHoja.getRange(filaActual, 4).setValue(contacto.relacion);     // Columna D: Relación
-      nuevaHoja.getRange(filaActual, 5).setValue(contacto.telefono);     // Columna E: Teléfono
-      nuevaHoja.getRange(filaActual, 6).setValue(contacto.pareja);       // Columna F: Pareja (SI/NO)
-      nuevaHoja.getRange(filaActual, 7).setValue(contacto.trabajos);     // Columna G: Trabajos
-      nuevaHoja.getRange(filaActual, 8).setValue(contacto.personas);     // Columna H: Cantidad
-      nuevaHoja.getRange(filaActual, 9).setValue(contacto.observacion);  // Columna I: Observaciones
+    if (datos.contactos && Array.isArray(datos.contactos)) {
+      datos.contactos.forEach((contacto, index) => {
+        let filaActual = filaInicioContactos + index;
+        nuevaHoja.getRange(filaActual, 3).setValue(contacto.nombre || "");       // Columna C: Nombre completo
+        nuevaHoja.getRange(filaActual, 4).setValue(contacto.relacion || "");     // Columna D: Relación/Vínculo
+        nuevaHoja.getRange(filaActual, 5).setValue(contacto.telefono || "");     // Columna E: Teléfono celular
+        nuevaHoja.getRange(filaActual, 6).setValue(contacto.pareja || "NO");     // Columna F: Pareja (SI/NO)
+        nuevaHoja.getRange(filaActual, 7).setValue(contacto.trabajos || "");     // Columna G: Trabajo/s
+        nuevaHoja.getRange(filaActual, 8).setValue(contacto.personas || "");     // Columna H: Cantidad de personas
+        nuevaHoja.getRange(filaActual, 9).setValue(contacto.observacion || "");  // Columna I: Observaciones de interés
+      });
+    }
+    
+    return responderJSON({
+      status: "success", 
+      message: "Planilla duplicada y cargada con éxito. Nueva Pestaña: " + nuevaHoja.getName()
     });
     
-    return responderJSON({status: "success", message: "Pestaña creada correctamente: " + nuevaHoja.getName()});
-    
   } catch (error) {
-    return responderJSON({status: "error", message: error.toString()});
+    return responderJSON({
+      status: "error", 
+      message: "Fallo crítico interno: " + error.toString()
+    });
   }
 }
 
 function responderJSON(objeto) {
-  return ContentService.createTextOutput(JSON.stringify(objeto)).setMimeType(ContentService.MimeType.JSON);
+  return ContentService.createTextOutput(JSON.stringify(objeto))
+                       .setMimeType(ContentService.MimeType.JSON);
 }</textarea>
                         </div>
                     </div>
@@ -734,6 +749,7 @@ function responderJSON(objeto) {
                     thumb.classList.remove('border-transparent', 'opacity-60');
                     
                     const container = officeCarouselThumbs;
+                    // Usamos scrollTo para evitar saltos en la pantalla completa
                     const scrollTarget = thumb.offsetLeft - (container.clientWidth / 2) + (thumb.clientWidth / 2);
                     container.scrollTo({ left: scrollTarget, behavior: 'smooth' });
                 } else {
@@ -1075,7 +1091,6 @@ function responderJSON(objeto) {
             }
         }
 
-        // --- Ejecutando el envío sin preflight CORS para evitar errores en GitHub ---
         async function handleLeadSubmit(event) {
             event.preventDefault();
 
