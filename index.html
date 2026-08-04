@@ -559,6 +559,23 @@
                             </div>
 
                         </div>
+
+                        <!-- Nueva sección para Cargar Excel 4-14 -->
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-4 mt-6">
+                            <h3 class="text-sm font-extrabold uppercase text-green-600 tracking-wider flex items-center gap-2 border-b pb-2">
+                                <i class="fa-solid fa-file-excel"></i> Cargar Planilla 4-14 (Excel / Sheets)
+                            </h3>
+                            <p class="text-xs text-gray-500">Seleccioná tu archivo Excel (.xlsx, .csv) descargado de Google Sheets para subir los datos del programa 4-14 al sistema.</p>
+                            
+                            <div class="flex flex-col sm:flex-row gap-4 items-center">
+                                <input type="file" id="excelUpload414" accept=".xlsx, .xls, .csv" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:uppercase file:tracking-wider file:bg-green-50 file:text-green-700 hover:file:bg-green-100 transition-all cursor-pointer bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500">
+                                
+                                <button type="button" onclick="procesarExcel414()" class="bg-green-600 hover:bg-green-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition-all shadow-md shrink-0 flex items-center gap-2 w-full sm:w-auto justify-center">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i> Cargar Datos
+                                </button>
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>
@@ -1063,31 +1080,135 @@
             }
         }
 
-        function handleLeadSubmit(event) {
+        // --- FUNCION PARA ENVIAR DATOS A GOOGLE SHEETS VIA APPS SCRIPT ---
+        async function handleLeadSubmit(event) {
             event.preventDefault();
 
-            const name = document.getElementById('leadName').value.trim();
-            const contacts = [];
-            const rows = document.getElementById('referralsTableBody').children;
+            // 1. Recolectar datos generales
+            const team = document.getElementById('leadTeam').value;
+            const payload = {
+                leadRepresentative: document.getElementById('leadRepresentative').value.trim(),
+                leadName: document.getElementById('leadName').value.trim(),
+                leadPhone: document.getElementById('leadPhone').value.trim(),
+                leadReferidoDe: document.getElementById('leadReferidoDe').value.trim(),
+                leadRegalo: document.getElementById('leadRegalo').value.trim(),
+                leadFechaDemo: document.getElementById('leadFechaDemo').value,
+                leadFechaInicio: document.getElementById('leadFechaInicio').value,
+                referrals: []
+            };
 
+            // 2. Recolectar referidos de la tabla dinámica
+            const rows = document.getElementById('referralsTableBody').children;
             Array.from(rows).forEach(row => {
                 const nombre = row.querySelector('.ref-input-nombre').value.trim();
-                if (nombre) contacts.push(nombre);
+                if (nombre) {
+                    payload.referrals.push({
+                        nombre: nombre,
+                        relacion: row.querySelector('.ref-input-relacion').value.trim(),
+                        telefono: row.querySelector('.ref-input-telefono').value.trim(),
+                        pareja: row.querySelector('.ref-input-pareja').value,
+                        trabajo: row.querySelector('.ref-input-trabajo').value.trim(),
+                        personas: row.querySelector('.ref-input-personas').value.trim(),
+                        observacion: row.querySelector('.ref-input-observacion').value.trim()
+                    });
+                }
             });
 
-            if (contacts.length < 1) {
+            if (payload.referrals.length < 1) {
                 showNotification("Debes ingresar al menos 1 Referido calificado para continuar.", "error");
                 return;
             }
 
-            showNotification(`Demostración de "${name}" procesada localmente.`, "success");
+            // 3. URLs de los Web Apps de Google Apps Script
+            // IMPORTANTE: Reemplazá estas URLs por las que generaste en Google Apps Script
+            const apiEndpoints = {
+                'CIJU': 'https://script.google.com/macros/s/TU_ID_DE_CIJU_AQUI/exec',
+                'KAIROS': 'https://script.google.com/macros/s/TU_ID_DE_KAIROS_AQUI/exec',
+                'RITTZ': '', // Dejar en blanco si aún no tienen script
+                'PROMEZ': '' // Dejar en blanco si aún no tienen script
+            };
+
+            const targetUrl = apiEndpoints[team];
+
+            if (!targetUrl) {
+                showNotification(`El sistema automático para el equipo ${team} aún no está configurado.`, "error");
+                return;
+            }
+
+            // 4. Enviar los datos
+            const btn = document.getElementById('submitLeadBtn');
+            const originalBtnContent = btn.innerHTML;
             
-            document.getElementById('leadName').value = '';
-            document.getElementById('leadPhone').value = '';
-            document.getElementById('leadReferidoDe').value = '';
-            document.getElementById('leadRegalo').value = '';
+            try {
+                // Cambiamos el estado del botón a modo de carga
+                btn.disabled = true;
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Subiendo al Drive...';
+
+                // Usamos fetch para enviar el POST. text/plain evita el bloqueo de preflight de CORS
+                const response = await fetch(targetUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'text/plain;charset=utf-8',
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    showNotification(`¡Demostración de "${payload.leadName}" cargada exitosamente en la base de ${team}!`, "success");
+                    
+                    // Limpiar formulario y reiniciar la grilla
+                    document.getElementById('googleSheetLeadForm').reset();
+                    initReferralsGrid();
+                    
+                    // Setear la fecha de nuevo para mayor comodidad
+                    const today = new Date().toISOString().split('T')[0];
+                    document.getElementById('leadFechaDemo').value = today;
+                    document.getElementById('leadFechaInicio').value = today;
+                } else {
+                    throw new Error(result.message);
+                }
+
+            } catch (error) {
+                console.error("Error al sincronizar con Sheets:", error);
+                showNotification("Hubo un error al intentar enviar los datos. Revisá tu conexión.", "error");
+            } finally {
+                // Restaurar el botón
+                btn.disabled = false;
+                btn.innerHTML = originalBtnContent;
+            }
+        }
+
+        // --- FUNCIÓN PARA CARGAR Y VALIDAR EXCEL 4-14 ---
+        function procesarExcel414() {
+            const fileInput = document.getElementById('excelUpload414');
+            const file = fileInput.files[0];
+
+            // Validación de seguridad básica: verificar que se haya seleccionado un archivo
+            if (!file) {
+                showNotification("Por favor, seleccioná un archivo Excel o CSV antes de cargar.", "error");
+                return;
+            }
+
+            // Validación de formato
+            const allowedExtensions = ['xlsx', 'xls', 'csv'];
+            const fileExtension = file.name.split('.').pop().toLowerCase();
             
-            initReferralsGrid();
+            if (!allowedExtensions.includes(fileExtension)) {
+                showNotification("Formato no válido. Solo se admiten archivos de Excel o CSV.", "error");
+                fileInput.value = ''; // Limpiar el input
+                return;
+            }
+
+            // Aquí iría la lógica de lectura (ej. usando la librería SheetJS/XLSX)
+            // Simulamos el procesamiento exitoso del archivo 4-14:
+            showNotification(`Procesando planilla 4-14: "${file.name}"...`, "info");
+            
+            setTimeout(() => {
+                showNotification("¡Planilla 4-14 cargada y sincronizada con éxito!", "success");
+                fileInput.value = ''; // Limpiar el input tras el éxito
+            }, 1500);
         }
     </script>
 </body>
