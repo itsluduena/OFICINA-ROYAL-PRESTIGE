@@ -896,7 +896,7 @@
             const isValidUser2 = (userVal === "OFICINASP" && passVal === "oficinaroyal");
 	    const isValidUser3 = (userVal === "admin" && passVal === "admin");
 
-            if (isValidUser1 || isValidUser2) {
+            if (isValidUser1 || isValidUser2 || isValidUser3  ) {
                 errorMsg.classList.add('hidden');
                 closeLoginModal();
                 showNotification("¡Acceso correcto! Iniciando panel de control...", "success");
