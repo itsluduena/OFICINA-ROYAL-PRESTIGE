@@ -378,7 +378,7 @@
 
                 <div class="flex-1 overflow-y-auto p-6">
                     
-                    <!-- TAB 1: Lead Form Loading Area -->
+                    <!-- TAB 1: Lead Form Loading Area (Planilla Pre-hecha) -->
                     <div id="tab-leads" class="space-y-6">
 
                         <form id="googleSheetLeadForm" onsubmit="handleLeadSubmit(event)" class="space-y-6">
@@ -559,23 +559,6 @@
                             </div>
 
                         </div>
-
-                        <!-- Nueva sección para Cargar Excel 4-14 -->
-                        <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm space-y-4 mt-6">
-                            <h3 class="text-sm font-extrabold uppercase text-green-600 tracking-wider flex items-center gap-2 border-b pb-2">
-                                <i class="fa-solid fa-file-excel"></i> Cargar Planilla 4-14 (Excel / Sheets)
-                            </h3>
-                            <p class="text-xs text-gray-500">Seleccioná tu archivo Excel (.xlsx, .csv) descargado de Google Sheets para subir los datos del programa 4-14 al sistema.</p>
-                            
-                            <div class="flex flex-col sm:flex-row gap-4 items-center">
-                                <input type="file" id="excelUpload414" accept=".xlsx, .xls, .csv" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:uppercase file:tracking-wider file:bg-green-50 file:text-green-700 hover:file:bg-green-100 transition-all cursor-pointer bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500">
-                                
-                                <button type="button" onclick="procesarExcel414()" class="bg-green-600 hover:bg-green-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs uppercase tracking-wider transition-all shadow-md shrink-0 flex items-center gap-2 w-full sm:w-auto justify-center">
-                                    <i class="fa-solid fa-cloud-arrow-up"></i> Cargar Datos
-                                </button>
-                            </div>
-                        </div>
-
                     </div>
 
                 </div>
@@ -1084,7 +1067,7 @@
         async function handleLeadSubmit(event) {
             event.preventDefault();
 
-            // 1. Recolectar datos generales
+            // 1. Recolectar datos generales del formulario HTML
             const team = document.getElementById('leadTeam').value;
             const payload = {
                 leadRepresentative: document.getElementById('leadRepresentative').value.trim(),
@@ -1097,7 +1080,7 @@
                 referrals: []
             };
 
-            // 2. Recolectar referidos de la tabla dinámica
+            // 2. Recolectar referidos de la tabla dinámica HTML
             const rows = document.getElementById('referralsTableBody').children;
             Array.from(rows).forEach(row => {
                 const nombre = row.querySelector('.ref-input-nombre').value.trim();
@@ -1120,10 +1103,10 @@
             }
 
             // 3. URLs de los Web Apps de Google Apps Script
-            // IMPORTANTE: Reemplazá estas URLs por las que generaste en Google Apps Script
+            // REEMPLAZAR ESTAS URLs CON LAS GENERADAS EN TU PROYECTO
             const apiEndpoints = {
-                'CIJU': 'https://script.google.com/macros/s/AKfycbyhtFT7pBMTTUVBbrCCCH59QFfxK0BxDm2X3ZLdJmsga4mRa4aMg_kn1p9e0-dQg85x/exec',
-                'KAIROS': 'https://script.google.com/macros/s/AKfycbzjbZgNJR4dq21E6tw0tqGQJhEFBjHp8p6T__OCl1IKCWTPA4CFDJk96arnOYeva6CC/exec',
+                'CIJU': 'https://script.google.com/macros/s/TU_ID_DE_CIJU_AQUI/exec',
+                'KAIROS': 'https://script.google.com/macros/s/TU_ID_DE_KAIROS_AQUI/exec',
                 'RITTZ': '', // Dejar en blanco si aún no tienen script
                 'PROMEZ': '' // Dejar en blanco si aún no tienen script
             };
@@ -1142,9 +1125,9 @@
             try {
                 // Cambiamos el estado del botón a modo de carga
                 btn.disabled = true;
-                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Subiendo al Drive...';
+                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Procesando al Drive...';
 
-                // Usamos fetch para enviar el POST. text/plain evita el bloqueo de preflight de CORS
+                // Usamos fetch para enviar el POST (text/plain evita bloqueos CORS)
                 const response = await fetch(targetUrl, {
                     method: 'POST',
                     headers: {
@@ -1162,7 +1145,7 @@
                     document.getElementById('googleSheetLeadForm').reset();
                     initReferralsGrid();
                     
-                    // Setear la fecha de nuevo para mayor comodidad
+                    // Setear la fecha de nuevo
                     const today = new Date().toISOString().split('T')[0];
                     document.getElementById('leadFechaDemo').value = today;
                     document.getElementById('leadFechaInicio').value = today;
@@ -1174,41 +1157,10 @@
                 console.error("Error al sincronizar con Sheets:", error);
                 showNotification("Hubo un error al intentar enviar los datos. Revisá tu conexión.", "error");
             } finally {
-                // Restaurar el botón
+                // Restaurar el botón original
                 btn.disabled = false;
                 btn.innerHTML = originalBtnContent;
             }
-        }
-
-        // --- FUNCIÓN PARA CARGAR Y VALIDAR EXCEL 4-14 ---
-        function procesarExcel414() {
-            const fileInput = document.getElementById('excelUpload414');
-            const file = fileInput.files[0];
-
-            // Validación de seguridad básica: verificar que se haya seleccionado un archivo
-            if (!file) {
-                showNotification("Por favor, seleccioná un archivo Excel o CSV antes de cargar.", "error");
-                return;
-            }
-
-            // Validación de formato
-            const allowedExtensions = ['xlsx', 'xls', 'csv'];
-            const fileExtension = file.name.split('.').pop().toLowerCase();
-            
-            if (!allowedExtensions.includes(fileExtension)) {
-                showNotification("Formato no válido. Solo se admiten archivos de Excel o CSV.", "error");
-                fileInput.value = ''; // Limpiar el input
-                return;
-            }
-
-            // Aquí iría la lógica de lectura (ej. usando la librería SheetJS/XLSX)
-            // Simulamos el procesamiento exitoso del archivo 4-14:
-            showNotification(`Procesando planilla 4-14: "${file.name}"...`, "info");
-            
-            setTimeout(() => {
-                showNotification("¡Planilla 4-14 cargada y sincronizada con éxito!", "success");
-                fileInput.value = ''; // Limpiar el input tras el éxito
-            }, 1500);
         }
     </script>
 </body>
